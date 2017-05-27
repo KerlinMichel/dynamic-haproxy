@@ -1,13 +1,15 @@
-FROM haproxy:1.7
+FROM buildpack-deps:jessie
 
-COPY . /usr/local/etc/haproxy/
-
-RUN groupadd haproxy && useradd -g haproxy haproxy
-
-RUN mkdir /var/lib/haproxy
+COPY . /etc/haproxy/
 
 RUN apt-get update && apt-get install -y libffi-dev \
-                                         python python-pip python-dev python-setuptools
+                                         python python-pip python-dev python-setuptools \
+                                         haproxy
 
 RUN pip install --upgrade cffi
 RUN pip install flask bcrypt
+
+WORKDIR /etc/haproxy
+
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
