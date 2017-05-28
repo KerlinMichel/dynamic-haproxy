@@ -1,2 +1,3 @@
 control-server/default_servers
 control-server/.pass
+*.pyc

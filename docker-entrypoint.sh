@@ -1,4 +1,4 @@
 #!/bin/sh
-python control-server/configure.py
+python configure.py
 service haproxy start
-python control-server/server.py
+python server.py

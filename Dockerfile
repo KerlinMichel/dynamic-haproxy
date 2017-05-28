@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y libffi-dev \
 RUN pip install --upgrade cffi
 RUN pip install flask bcrypt
 
-WORKDIR /etc/haproxy
+WORKDIR /etc/haproxy/control-server
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
