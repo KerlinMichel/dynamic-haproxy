@@ -38,5 +38,17 @@ def add_servers():
         reload_server()
     return 'Added servers succesfully'
 
+@app.route("/deleteServers", methods=['POST'])
+@auth
+def remove_servers():
+    body = request.get_json()
+    servers = body.get('servers')
+    reload_server_flag = body.get('reload_server')
+    for server in servers:
+        remove_server(server, False)
+    if reload_server_flag:
+        reload_server()
+    return 'Removed server successfully'
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
